@@ -120,6 +120,15 @@ export class FilesStore {
       { include: [`${WORK_DIR}/**`], exclude: ['**/node_modules', '.git'], includeContent: true },
       bufferWatchEvents(100, this.#processEventBuffer.bind(this)),
     );
+
+
+    const files = await webcontainer.fs.readdir('./', { withFileTypes: true });
+    logger.info(`files: ${files},${webcontainer.workdir} `);
+    for (const file of files) {
+      logger.info(file.isDirectory() ? `[DIR] ${file.name}` : `[FILE] ${file.name}`);
+    }
+    logger.info(`webcontainer: ${webcontainer} `);
+    
   }
 
   #processEventBuffer(events: Array<[events: PathWatcherEvent[]]>) {
