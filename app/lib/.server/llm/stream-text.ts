@@ -26,7 +26,7 @@ export function streamText(messages: Messages, env: Env, options?: StreamingOpti
     model: getAnthropicModel(getAPIKey(env)),
     system: getSystemPrompt(),
     maxTokens: MAX_TOKENS,
-    maxSegments: 500,
+    maxSegments: 5000,
     headers: {
       'anthropic-beta': 'max-tokens-3-5-sonnet-2024-07-15',
     },
